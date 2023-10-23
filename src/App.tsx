@@ -1,19 +1,12 @@
 import { useState } from "react";
 import { Item } from "./types";
 import { INITIAL_STATE } from "./data/initial-items";
+import { generateNewItem } from "./utils";
+import Button from "./components/Button";
+import TodoList from "./components/TodoList";
 
 function App() {
   const [items, setItems] = useState<Item[]>(INITIAL_STATE);
-
-  const generateNewItem = (text: string): Item => {
-    // Function to generate a new item based on its text, everything else is generated automatically
-    return {
-      id: crypto.randomUUID(),
-      text: text,
-      done: false,
-      timestamp: Date.now(),
-    };
-  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // Prevents the page from reloading
@@ -33,7 +26,7 @@ function App() {
   };
 
   return (
-    <main className="bg-green-200 gap-16 min-h-screen grid grid-cols-[450px,1fr] p-16 ">
+    <main className="bg-green-200 gap-16 min-h-screen grid grid-cols-1 md:grid-cols-[350px,1fr] xl:grid-cols-[450px,1fr]  p-16 ">
       <aside className="flex flex-col gap-4">
         <h1>React Frontent Exercise🌿</h1>
         <h2>State control with performance</h2>
@@ -49,32 +42,24 @@ function App() {
               className="text-green-800 bg-green-50 text-xl px-4 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-700"
             />
           </label>
-          <button
-            type="submit"
-            className="bg-green-700 transition-all text-green-100 px-4 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-offset-2 focus:ring-offset-green-200 hover:bg-green-800"
-          >
-            Add to list
-          </button>
+          <Button text="Add to list" type="submit" />
         </form>
       </aside>
 
       <section className="flex flex-col gap-4">
-        <h2>List of elements</h2>
-        <ul className="flex flex-col gap-2">
-          {items.map((item) => {
-            return (
-              <li
-                key={item.id}
-                className="bg-green-50 text-green-900 text-xl px-4 py-2 rounded-xl"
-              >
-                <small className="text-xs">
-                  {new Date(item.timestamp).toLocaleDateString("es-ES")}
-                </small>
-                <p>{item.text}</p>
-              </li>
-            );
-          })}
-        </ul>
+        {items.length === 0 ? (
+          <>
+            <h2>Instructions</h2>
+            <p>1. Add an element to the list</p>
+            <p>2. Remove the element from the list</p>{" "}
+            <Button text="Add Sample" onClick={() => setItems(INITIAL_STATE)} />
+          </>
+        ) : (
+          <>
+            <h2>Elements of the list</h2>
+            <TodoList items={items} onChangeItems={setItems} />
+          </>
+        )}
       </section>
     </main>
   );
