@@ -8,7 +8,7 @@ interface TodoListProps {
 
 const TodoList = ({ todos, onRemoveTodo }: TodoListProps) => {
   return (
-    <ul className="flex flex-col gap-2">
+    <ul className="flex flex-col-reverse gap-2">
       {todos.map((todo) => {
         return <Todo key={todo.id} todo={todo} onRemove={onRemoveTodo} />;
       })}
