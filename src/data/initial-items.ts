@@ -20,3 +20,10 @@ export const INITIAL_STATE: Item[] = [
     timestamp: Date.now(),
   },
 ];
+
+export const EXAMPLE_TODO: Item = {
+  id: crypto.randomUUID(),
+  text: "Start a new project",
+  done: false,
+  timestamp: Date.now(),
+};

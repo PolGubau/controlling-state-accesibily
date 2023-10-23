@@ -1,9 +1,14 @@
 import Button from "./components/Button";
 import TodoList from "./components/TodoList";
+import { useSeo } from "./hooks/useSeo";
 import { useTodos } from "./hooks/useTodo";
 
 function App() {
   const { todos, addTodo, resetTodos } = useTodos();
+  useSeo({
+    title: `${todos.length} Items in React Frontend Exercise`,
+    description: "State control with performance",
+  });
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // Prevents the page from reloading

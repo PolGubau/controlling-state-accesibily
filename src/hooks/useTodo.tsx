@@ -23,11 +23,15 @@ export const useTodos = () => {
   const resetTodos = () => {
     setTodos(INITIAL_STATE);
   };
+  const truncateTodos = () => {
+    setTodos([]);
+  };
 
   return {
     todos,
     removeTodo,
     addTodo,
     resetTodos,
+    truncateTodos,
   };
 };
