@@ -1,12 +1,9 @@
-import { useState } from "react";
-import { Item } from "./types";
-import { INITIAL_STATE } from "./data/initial-items";
-import { generateNewItem } from "./utils";
 import Button from "./components/Button";
 import TodoList from "./components/TodoList";
+import { useTodos } from "./hooks/useTodo";
 
 function App() {
-  const [items, setItems] = useState<Item[]>(INITIAL_STATE);
+  const { todos, addTodo, resetTodos } = useTodos();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); // Prevents the page from reloading
@@ -18,9 +15,7 @@ function App() {
 
     if (!isInput || input == null) return; // If the input is not an HTMLInputElement, return
 
-    const newItem = generateNewItem(input.value); // Creating the new item
-
-    setItems([...items, newItem]); //   Adding the new item to the list
+    addTodo?.(input.value); // Adding the new item to the list
 
     input.value = ""; // Resetting the input value
   };
@@ -31,7 +26,11 @@ function App() {
         <h1>React Frontent Exercise🌿</h1>
         <h2>State control with performance</h2>
 
-        <form className="mt-8 flex flex-col gap-2" onSubmit={handleSubmit}>
+        <form
+          className="mt-8 flex flex-col gap-2"
+          onSubmit={handleSubmit}
+          aria-label="Add todos to the list"
+        >
           <label className="flex flex-col gap-1 py-2">
             Element to introduce:
             <input
@@ -47,17 +46,17 @@ function App() {
       </aside>
 
       <section className="flex flex-col gap-4">
-        {items.length === 0 ? (
+        {todos.length === 0 ? (
           <>
             <h2>Instructions</h2>
             <p>1. Add an element to the list</p>
             <p>2. Remove the element from the list</p>{" "}
-            <Button text="Add Sample" onClick={() => setItems(INITIAL_STATE)} />
+            <Button text="Add Sample" onClick={resetTodos} />
           </>
         ) : (
           <>
             <h2>Elements of the list</h2>
-            <TodoList items={items} onChangeItems={setItems} />
+            <TodoList />
           </>
         )}
       </section>
