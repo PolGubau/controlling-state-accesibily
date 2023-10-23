@@ -4,7 +4,6 @@ import { INITIAL_STATE } from "../data/initial-items";
 
 export const useTodos = () => {
   const [todos, setTodos] = useState<Item[]>(INITIAL_STATE);
-
   const removeTodo = (id: ItemId): void => {
     setTodos((prevState) => prevState.filter((todo) => todo.id !== id));
   };
@@ -17,7 +16,8 @@ export const useTodos = () => {
       done: false,
       timestamp: Date.now(),
     };
-    setTodos((prevTodos) => [...prevTodos, newItem]);
+    const newTodos = [...todos, newItem];
+    setTodos(newTodos);
   };
 
   const resetTodos = () => {

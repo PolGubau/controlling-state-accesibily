@@ -1,14 +1,13 @@
-import { useTodos } from "../hooks/useTodo";
-import { Item } from "../types";
+import { Item, ItemId } from "../types";
 
 interface ListProps {
   todo: Item;
+  onRemove?: (id: ItemId) => void;
 }
 
-const Todo: React.FC<ListProps> = ({ todo }) => {
-  const { removeTodo } = useTodos();
+const Todo: React.FC<ListProps> = ({ todo, onRemove }) => {
   const handleDelete = () => {
-    removeTodo(todo.id);
+    onRemove?.(todo.id);
   };
 
   return (

@@ -4,7 +4,7 @@ import { useSeo } from "./hooks/useSeo";
 import { useTodos } from "./hooks/useTodo";
 
 function App() {
-  const { todos, addTodo, resetTodos } = useTodos();
+  const { todos, addTodo, resetTodos, removeTodo } = useTodos();
   useSeo({
     title: `${todos.length} Items in React Frontend Exercise`,
     description: "State control with performance",
@@ -61,7 +61,7 @@ function App() {
         ) : (
           <>
             <h2>Elements of the list</h2>
-            <TodoList />
+            <TodoList todos={todos} onRemoveTodo={removeTodo} />
           </>
         )}
       </section>
