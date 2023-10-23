@@ -13,7 +13,7 @@ const Todo: React.FC<ListProps> = ({ todo, onRemove }) => {
   return (
     <li
       key={todo.id}
-      className="bg-green-50 text-green-900 text-xl p-3 pl-4 rounded-2xl"
+      className="bg-green-50 text-green-900 text-xl p-3 pl-4 rounded-2xl text-ellipsis overflow-hidden	 "
     >
       <header className="flex justify-between">
         <small className="text-xs">
