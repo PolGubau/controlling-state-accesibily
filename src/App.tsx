@@ -52,7 +52,7 @@ function App() {
           </form>
         </aside>
 
-        <section className="flex flex-col gap-4 overflow-y-auto overflow-x-hidden">
+        <section className="flex flex-col gap-4 overflow-y-auto overflow-x-hidden rounded-2xl">
           {todos.length === 0 ? (
             <>
               <h2 className={classes.subtitle}>Instructions</h2>
