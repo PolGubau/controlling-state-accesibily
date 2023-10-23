@@ -28,19 +28,24 @@ function App() {
 
   return (
     <div className="h-screen flex flex-col justify-between bg-green-200 color-green-800">
-      <main className="overflow-x-hidden overflow-y-auto gap-16 h-full grid grid-cols-1 md:grid-cols-[350px,1fr] xl:grid-cols-[450px,1fr] p-8 md:p-16 ">
-        <aside className="flex flex-col gap-4 sticky top-0">
-          <h1 className="text-4xl md:text-6xl">React Frontent Exercise🌿</h1>
-          <h2 className={classes.subtitle}>State control with performance</h2>
+      <main className="overflow-x-hidden overflow-y-auto gap-4 md:gap-16 h-full grid grid-cols-1 md:grid-cols-[350px,1fr] xl:grid-cols-[450px,1fr] p-8 md:p-16 ">
+        <aside className="flex flex-col gap-4">
+          <h1 className="text-4xl md:text-6xl balance">
+            React Frontent Exercise🌿
+          </h1>
+          <h2 className={classes.subtitle + " balance"}>
+            State control with performance
+          </h2>
 
           <form
             className="mt-8 flex flex-col gap-2"
             onSubmit={handleSubmit}
             aria-label="Add todos to the list"
           >
-            <label className="flex flex-col gap-1 py-2">
+            <label className="flex flex-col gap-1 py-2 balance">
               Element to introduce:
               <input
+                autoFocus
                 type="text"
                 name="itemText"
                 required
@@ -52,7 +57,7 @@ function App() {
           </form>
         </aside>
 
-        <section className="flex flex-col gap-4 overflow-y-auto overflow-x-hidden rounded-2xl">
+        <section className="flex flex-col gap-4 overflow-y-auto overflow-x-hidden rounded-2xl ">
           {todos.length === 0 ? (
             <>
               <h2 className={classes.subtitle}>Instructions</h2>
@@ -62,7 +67,9 @@ function App() {
             </>
           ) : (
             <>
-              <h2 className={classes.subtitle}>Elements of the list</h2>
+              <h2 className={classes.subtitle + " balance"}>
+                Elements of the list
+              </h2>
               <TodoList todos={todos} onRemoveTodo={removeTodo} />
             </>
           )}
